@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import EmployeeForm from './EmployeeForm';
+import { withEmployees } from '../context/EmployeeProvider';
+
+import './css/employee.scss';
 
 class Employee extends Component {
   constructor(props) {
@@ -20,7 +23,8 @@ class Employee extends Component {
     }))
   }
 
-  onHandleChange = (e) => {
+  onEmployeeChange = (e) => {
+    console.log('employee change')
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -42,22 +46,21 @@ class Employee extends Component {
   render() {
     const { employeeId, firstName, lastName, email, phoneNumber, _id, deleteEmployee } = this.props
     return (
-      <div>
+      <div className='employee'>
         { !this.state.isToggled ?
-        <div style={{border: '5px solid black'}}>
-          <h1>{employeeId}</h1>
-          <h1>{firstName}</h1>
-          <h1>{lastName}</h1>
-          <h1>{email}</h1>
-          <h1>{phoneNumber}</h1>
-          <button onClick={this.toggler}>Edit</button>
-          <button onClick={() => deleteEmployee(_id)}>Delete</button>
-        </div>
+          <div className='table'>
+            <p>{employeeId}</p>
+            <p>{firstName}</p>
+            <p>{lastName}</p>
+            <p>{email}</p>
+            <p>{phoneNumber}</p>
+            <p><button className="btn btn-edit" onClick={this.toggler}>Edit</button>
+            <button className="btn btn-delete" onClick={() => deleteEmployee(_id)}>Delete</button></p>
+          </div>
         :
         <div>
-          hello world
           <EmployeeForm 
-            onHandleChange={this.onHandleChange}
+            onHandleChange={this.onEmployeechange}
             onButtonSubmit={this.onButtonSubmit}
             employeeId={this.state.employeeId}
             firstName={this.state.firstName}
@@ -65,13 +68,12 @@ class Employee extends Component {
             email={this.state.email}
             phoneNumber={this.state.phoneNumber}
             btnText='Update Employee' />
-          <button onClick={this.toggler}>Close</button>
+          <button className="btn" onClick={this.toggler}>Close</button>
         </div>
         }
       </div>
-
     );
   }
 } 
 
-export default Employee;
+export default withEmployees(Employee);

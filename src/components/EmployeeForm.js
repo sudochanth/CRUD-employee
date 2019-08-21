@@ -1,39 +1,40 @@
 import React from 'react';
+import { withEmployees } from '../context/EmployeeProvider';
+import './css/form.scss';
 
-const EmployeeForm = 
-	({ employeeId, firstName, lastName, email, phoneNumber, onHandleChange, onButtonSubmit, btnText }) => {
+const EmployeeForm = (props) => {
   return (
-    <div>
-      <form onSubmit={onButtonSubmit}>
+    <div className="form-container">
+      <form className='form' onSubmit={props.onButtonSubmit}>
         <input type="text"
                name="employeeId"
-               value={employeeId}
-               onChange={onHandleChange}
+               value={props.employeeId}
+               onChange={props.onHandleChange}
                placeholder="Employee ID"/>
         <input type="text"
                name="firstName"
-               value={firstName}
-               onChange={onHandleChange}
+               value={props.firstName}
+               onChange={props.onHandleChange}
                placeholder="First Name" />
         <input type="text"
                name="lastName"
-               value={lastName}
-               onChange={onHandleChange}
+               value={props.lastName}
+               onChange={props.onHandleChange}
                placeholder="Last Name" />
         <input type="email"
                name="email"
-               value={email}
-               onChange={onHandleChange}
+               value={props.email}
+               onChange={props.onHandleChange}
                placeholder="Email"/>
         <input type="tel"
                name="phoneNumber"
-               value={phoneNumber}
-               onChange={onHandleChange}
+               value={props.phoneNumber}
+               onChange={props.onHandleChange}
                placeholder="Phone Number"/>
-       <button>{btnText}</button>
+       <button className="btn btn-secondary">Submit</button>
       </form>
     </div>
   );
 };
 
-export default EmployeeForm;
+export default withEmployees(EmployeeForm);

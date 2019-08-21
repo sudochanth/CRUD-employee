@@ -1,0 +1,16 @@
+.employeeList {
+  margin-top: 5%;
+  padding: 2% 1% 0 1%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #ffffffe3;
+}
+
+.employeeList span {
+  margin-right: 5%;
+}
+/*# sourceMappingURL=employeeList.css.map */

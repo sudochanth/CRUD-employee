@@ -1,0 +1,21 @@
+$large: 800px;
+
+.employee {
+  border-bottom: 2px solid rgb(230, 230, 230);  
+  
+  @media screen and (max-width: $large) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.table {
+  padding: 25px 100px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
