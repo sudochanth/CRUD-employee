@@ -3,26 +3,27 @@ $secondary-color: rgba(255, 255, 255, 0);
 
 .navbar {
   background-color: $primary-color;
-  // height: 150px;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
-  // margin-bottom: 5%;
   transition: background-color 1.7s ease-in-out;
   padding: 5%;
   
-  .link {
+  a {
     text-decoration: none;
     // margin: 5%;
     color: white;
+    font-size: 2em;
+  }
+
+  @media screen and (max-width: 1040px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
 .navbar:hover {
   background-color: $secondary-color;
   
-  .link {
+  a {
     color: $primary-color;
   }
 }

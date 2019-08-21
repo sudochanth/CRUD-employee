@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import EmployeeForm from './EmployeeForm';
-import { withEmployees } from '../context/EmployeeProvider';
-
 import './css/employee.scss';
+
 
 class Employee extends Component {
   constructor(props) {
@@ -23,8 +22,7 @@ class Employee extends Component {
     }))
   }
 
-  onEmployeeChange = (e) => {
-    console.log('employee change')
+  onHandleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -48,19 +46,26 @@ class Employee extends Component {
     return (
       <div className='employee'>
         { !this.state.isToggled ?
-          <div className='table'>
-            <p>{employeeId}</p>
-            <p>{firstName}</p>
-            <p>{lastName}</p>
-            <p>{email}</p>
-            <p>{phoneNumber}</p>
-            <p><button className="btn btn-edit" onClick={this.toggler}>Edit</button>
-            <button className="btn btn-delete" onClick={() => deleteEmployee(_id)}>Delete</button></p>
-          </div>
+        <div className='table'>
+          <h5 className='header'>Employee Id:</h5>
+          <p>{employeeId}</p>
+          <h5 className='header'>First Name:</h5>
+          <p>{firstName}</p>
+          <h5 className='header'>Last Name:</h5>
+          <p>{lastName}</p>
+          <h5 className='header'>Email:</h5>
+          <p>{email}</p>
+          <h5 className='header'>Phone Number:</h5>
+          <p>{phoneNumber}</p>
+          <p className='employeeButtons'>
+            <button className='btn btn-sm btn-warning' onClick={this.toggler}>Edit</button>
+            <button className='btn btn-sm btn-danger' onClick={() => deleteEmployee(_id)}>Delete</button>
+          </p>
+        </div>
         :
-        <div>
+        <div className='editForm'>
           <EmployeeForm 
-            onHandleChange={this.onEmployeechange}
+            onHandleChange={this.onHandleChange}
             onButtonSubmit={this.onButtonSubmit}
             employeeId={this.state.employeeId}
             firstName={this.state.firstName}
@@ -68,12 +73,12 @@ class Employee extends Component {
             email={this.state.email}
             phoneNumber={this.state.phoneNumber}
             btnText='Update Employee' />
-          <button className="btn" onClick={this.toggler}>Close</button>
         </div>
         }
       </div>
+
     );
   }
 } 
 
-export default withEmployees(Employee);
+export default Employee;

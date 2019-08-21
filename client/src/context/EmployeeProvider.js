@@ -13,6 +13,7 @@ class EmployeeProvider extends Component {
       lastName: '',
       email: '',
       phoneNumber: '',
+      isToggled: false
     }
   }
 
@@ -26,10 +27,29 @@ class EmployeeProvider extends Component {
       [e.target.name]: e.target.value
     })
   }
+
+  toggler = () => {
+    this.setState(prevState => ({
+      isToggled: !prevState.isToggled
+    }))
+  }
+
+  // onButtonSubmit = (e) => {
+  //   e.preventDefault();
+  //   const updates = {
+  //     employeeId: this.state.employeeId,
+  //     firstName: this.state.firstName,
+  //     lastName: this.state.lastName,
+  //     email: this.state.email,
+  //     phoneNumber: this.state.phoneNumber
+  //   };
+  //   this.props.editEmployee(this.props._id, updates);
+  //   this.toggler();
+  // }
     
-  onButtonSubmit = (e) => {
+  onButtonSubmit = (e,) => {
     e.preventDefault();
-    this.addEmployee(this.state);
+    // this.addEmployee(this.state);
     this.setState({
       employeeId: '',
       firstName: '',
@@ -37,6 +57,7 @@ class EmployeeProvider extends Component {
       email: '',
       phoneNumber: '',
     })
+    // alert('New Employee Created!')
   }
 
   getEmployees = () => {
@@ -84,8 +105,6 @@ class EmployeeProvider extends Component {
     .catch(err => console.log(err))
   } 
 
-
-
   render() {
     return (
       <EmployeeContext.Provider 
@@ -97,7 +116,8 @@ class EmployeeProvider extends Component {
           deleteEmployee: this.deleteEmployee,
           editEmployee: this.editEmployee,
           onButtonSubmit: this.onButtonSubmit,
-          onHandleChange: this.onHandleChange
+          onHandleChange: this.onHandleChange,
+          toggler: this.toggler
         }}>
         { this.props.children }
       </EmployeeContext.Provider>
