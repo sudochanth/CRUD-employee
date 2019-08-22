@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import EmployeeList from './components/EmployeeList';
-import EmployeeForm from './components/EmployeeForm';
-import Navbar from './components/Navbar';
+import EmployeeList from './EmployeeList';
+import EmployeeForm from './EmployeeForm';
+import Navbar from './Navbar';
+import './css/app.scss';
 
 class App extends Component {
   constructor() {
@@ -88,7 +89,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className='background'>
+      <div id='background'>
         <Navbar visibleToggle={this.visibleToggle} />
         { !this.state.isVisible ?
           <span></span> 
